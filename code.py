@@ -24,9 +24,7 @@ TFT = adafruit_ili9341.ILI9341(DISPLAY_BUS, width=320, height=240)
 
 gui.init()
 gui.refresh(TFT)
-print(graphics.BLACK)
 
-i = 3
 while True:
     time.sleep(1)
     temperature = dht.get_temperature()

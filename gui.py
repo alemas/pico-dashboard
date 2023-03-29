@@ -39,12 +39,12 @@ def init():
     set_group_item(STATUS_BAR_GROUP, Rect(0, 0, 320, status_bar_height, fill=status_bar_background_color), 0)
     set_group_item(STATUS_BAR_GROUP, Line(0, status_bar_height, 320, status_bar_height, graphics.WHITE), 1)
 
-    init_wifi()
-    init_temperature()
-    init_humidity()
+    __init_wifi()
+    __init_temperature()
+    __init_humidity()
     init_time()
 
-def init_wifi():
+def __init_wifi():
     WIFI_GROUP.x = 283
     WIFI_GROUP.y = 2
 
@@ -52,7 +52,7 @@ def init_wifi():
 
     set_group_item(STATUS_BAR_GROUP, WIFI_GROUP, 2)
 
-def init_temperature():
+def __init_temperature():
     x = 175
     temp_image_group = dio.Group()
     temp_image_group.x = x
@@ -66,7 +66,7 @@ def init_temperature():
     set_group_item(STATUS_BAR_GROUP, temp_image_group, 3)
     set_group_item(STATUS_BAR_GROUP, TEMP_LABEL, 4)
 
-def init_humidity():
+def __init_humidity():
     x = 230
     humidity_image_group = dio.Group()
     humidity_image_group.x = x
@@ -80,7 +80,7 @@ def init_humidity():
     set_group_item(STATUS_BAR_GROUP, humidity_image_group, 5)
     set_group_item(STATUS_BAR_GROUP, HUMIDITY_LABEL, 6)
 
-def init_time():
+def __init_time():
     global TIME_LABEL
     TIME_LABEL = graphics.make_label(status_bar_h_padding, int(status_bar_height/2), graphics.FONT_LUCIDA_GRANDE_BOLD_16, '09:41 Wed 13 Mar', graphics.WHITE)
     set_group_item(STATUS_BAR_GROUP, TIME_LABEL, 7)
@@ -117,3 +117,4 @@ def update_temperature(value):
 
 def update_humidity(value):
     HUMIDITY_LABEL.text = str(value) + "%"
+
