@@ -4,6 +4,7 @@ OUT_PATH = /Volumes/PICO
 
 send_src:
 	cp -r *.py ${OUT_PATH}
+	cp settings.toml ${OUT_PATH}
 
 receive_src:
 	cp -r ${OUT_PATH}/*.py ./

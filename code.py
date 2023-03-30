@@ -28,14 +28,13 @@ gui.refresh(TFT)
 
 wifi.stop_station()
 
-print("Not connected")
 print(wifi.ip_address())
 print(wifi.mac_address())
 print(wifi.is_online())
 
 wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
 
-print("\nConnected")
+print()
 print(wifi.ip_address())
 print(wifi.mac_address())
 print(wifi.is_online())

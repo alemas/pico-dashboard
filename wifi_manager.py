@@ -3,8 +3,8 @@ import ipaddress
 import wifi
 import socketpool
 
-WIFI_SSID = ""
-WIFI_PASSWORD = ""
+WIFI_SSID = os.getenv("WIFI_SSID")
+WIFI_PASSWORD = os.getenv("WIFI_PASSWORD")
 
 WIFI_RADIO = wifi.radio
 
@@ -27,7 +27,7 @@ def is_online() -> bool:
     return not ping is None
 
 def signal_strength() -> int:
-    WIFI_RADIO.rssi
+    return 0
 
 def mac_address():
     if WIFI_RADIO.mac_address:
