@@ -21,13 +21,20 @@ def stop_station():
 def start_station():
     WIFI_RADIO.start_station()
 
+def is_connected() -> bool:
+    return not ip_address() is None
+
 def is_online() -> bool:
     google_ipv4 = ipaddress.ip_address("8.8.8.8")
     ping = WIFI_RADIO.ping(google_ipv4)
     return not ping is None
 
 def signal_strength() -> int:
-    return 0
+    # if is_connected():
+        # if not WIFI_RADIO.ap_info is None:
+        #     return WIFI_RADIO.ap_info.rssi
+    # As of now, CircuitPython 8.0.2 on a raspberry pi pico will raise a 'NotImplementeError' when calling 'ap_info'
+    return None
 
 def mac_address():
     if WIFI_RADIO.mac_address:

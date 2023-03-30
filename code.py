@@ -27,23 +27,13 @@ gui.init()
 gui.refresh(TFT)
 
 wifi.stop_station()
-
-print(wifi.ip_address())
-print(wifi.mac_address())
-print(wifi.is_online())
-
 wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
 
-print()
-print(wifi.ip_address())
-print(wifi.mac_address())
-print(wifi.is_online())
-
-
 while True:
-    time.sleep(1)
     temperature = dht.get_temperature()
     humidity = dht.get_humidity()
+    gui.update_wifi()
     gui.update_temperature(temperature)
     gui.update_humidity(humidity)
     gui.refresh(TFT)
+    time.sleep(1)
