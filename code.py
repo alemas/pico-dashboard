@@ -8,6 +8,7 @@ import adafruit_ili9341
 import gui
 import graphics
 import dht
+import wifi_manager as wifi
 
 TFT_SCLK = board.GP2
 TFT_RST = board.GP5
@@ -24,6 +25,21 @@ TFT = adafruit_ili9341.ILI9341(DISPLAY_BUS, width=320, height=240)
 
 gui.init()
 gui.refresh(TFT)
+
+wifi.stop_station()
+
+print("Not connected")
+print(wifi.ip_address())
+print(wifi.mac_address())
+print(wifi.is_online())
+
+wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+
+print("\nConnected")
+print(wifi.ip_address())
+print(wifi.mac_address())
+print(wifi.is_online())
+
 
 while True:
     time.sleep(1)

@@ -42,7 +42,7 @@ def init():
     __init_wifi()
     __init_temperature()
     __init_humidity()
-    init_time()
+    __init_time()
 
 def __init_wifi():
     WIFI_GROUP.x = 283
