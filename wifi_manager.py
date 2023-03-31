@@ -21,7 +21,7 @@ def start_station():
     WIFI_RADIO.start_station()
 
 def scan_nearby_networks() -> list:
-    networks = map(lambda x: x.ssid if len(x.ssid) > 0 else "No name", WIFI_RADIO.start_scanning_networks())
+    networks = map(lambda x: x.ssid if len(x.ssid.strip()) > 0 else "No name", WIFI_RADIO.start_scanning_networks())
     set_networks = set(networks)
     WIFI_RADIO.stop_scanning_networks()
     return set_networks
