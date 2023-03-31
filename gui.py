@@ -133,12 +133,9 @@ def update_humidity():
 
 # MAIN WINDOW
 
-MAIN_WINDOW = None
 main_window_height = 240 - STATUS_BAR_HEIGHT
 
 def set_main_window(window: Window):
-    global MAIN_WINDOW
     global WINDOW_GROUP
-    MAIN_WINDOW = window
     WINDOW_GROUP = window.group
     set_group_item(ROOT_GROUP, WINDOW_GROUP, 0)

@@ -25,20 +25,22 @@ SPI = busio.SPI(TFT_SCLK, TFT_MOSI)
 DISPLAY_BUS = displayio.FourWire(SPI, command=TFT_DC, chip_select=TFT_CS, reset=TFT_RST)
 TFT = adafruit_ili9341.ILI9341(DISPLAY_BUS, width=320, height=240)
 
-gui.init()
+def setup():
+    gui.init()
+    wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+    window_manager.transition_to_window(TextWindow())
 
-wifi.stop_station()
-wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+def main_loop():
 
-text_window = TextWindow()
-window_manager.transition_to_window(text_window)
+    while True:
+        gui.update_wifi()
+        gui.update_temperature()
+        gui.update_humidity()
 
-while True:
-    gui.update_wifi()
-    gui.update_temperature()
-    gui.update_humidity()
+        window_manager.window_loop()
+        gui.draw(TFT)
 
-    window_manager.window_loop()
-    gui.draw(TFT)
+        time.sleep(1)
 
-    time.sleep(1)
+setup()
+main_loop()

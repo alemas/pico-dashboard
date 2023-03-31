@@ -41,7 +41,7 @@ def signal_strength() -> int:
     # As of now, CircuitPython 8.0.2 on a raspberry pi pico will raise a 'NotImplementeError' when calling 'ap_info'
     return None
 
-def mac_address():
+def mac_address() -> str:
     if WIFI_RADIO.mac_address:
         mac = ""
         for index, value in enumerate(WIFI_RADIO.mac_address):
@@ -53,6 +53,6 @@ def mac_address():
     else:
         return None
 
-def ip_address():
+def ip_address() -> str:
     return f"{WIFI_RADIO.ipv4_address}"
 
