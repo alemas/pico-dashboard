@@ -8,6 +8,7 @@ import adafruit_ili9341
 import gui
 import graphics
 import dht
+import wifi_manager as wifi
 
 TFT_SCLK = board.GP2
 TFT_RST = board.GP5
@@ -25,10 +26,14 @@ TFT = adafruit_ili9341.ILI9341(DISPLAY_BUS, width=320, height=240)
 gui.init()
 gui.refresh(TFT)
 
+wifi.stop_station()
+wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+
 while True:
-    time.sleep(1)
     temperature = dht.get_temperature()
     humidity = dht.get_humidity()
+    gui.update_wifi()
     gui.update_temperature(temperature)
     gui.update_humidity(humidity)
     gui.refresh(TFT)
+    time.sleep(1)

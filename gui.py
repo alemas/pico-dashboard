@@ -4,6 +4,7 @@ from adafruit_display_shapes.rect import Rect
 from adafruit_display_text import label
 
 import graphics
+import wifi_manager as wifi
 
 # ----- HELPER METHODS
 
@@ -42,13 +43,13 @@ def init():
     __init_wifi()
     __init_temperature()
     __init_humidity()
-    init_time()
+    __init_time()
 
 def __init_wifi():
     WIFI_GROUP.x = 283
     WIFI_GROUP.y = 2
 
-    update_wifi(3)
+    update_wifi()
 
     set_group_item(STATUS_BAR_GROUP, WIFI_GROUP, 2)
 
@@ -85,7 +86,7 @@ def __init_time():
     TIME_LABEL = graphics.make_label(status_bar_h_padding, int(status_bar_height/2), graphics.FONT_LUCIDA_GRANDE_BOLD_16, '09:41 Wed 13 Mar', graphics.WHITE)
     set_group_item(STATUS_BAR_GROUP, TIME_LABEL, 7)
 
-def update_wifi(status):
+def __update_wifi(status):
     wifi_image = None
 
     # Connected, full signal
@@ -111,6 +112,14 @@ def update_wifi(status):
     WIFI_GROUP.y = 2
 
     set_group_item(WIFI_GROUP, wifi_image, 0)
+
+def update_wifi():
+    if not wifi.is_connected():
+        __update_wifi(5)
+    elif not wifi.is_online():
+        __update_wifi(4)
+    else:
+        __update_wifi(0)
 
 def update_temperature(value):
     TEMP_LABEL.text = str(value) + "°C"

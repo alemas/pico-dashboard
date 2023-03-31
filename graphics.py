@@ -34,10 +34,10 @@ def make_font(font_name) -> bitmap_font.BDF:
     font = bitmap_font.load_font(font_path)
     return font
 
-FONT_PIXELOPERATOR_16 = make_font("PixelOperator-16")
-FONT_PIXELOPERATOR_32 = make_font("PixelOperator-32")
-FONT_PIXELOPERATOR_BOLD_16 = make_font("PixelOperator-Bold-16")
-FONT_PIXELOPERATOR_BOLD_32 = make_font("PixelOperator-Bold-32")
+# FONT_PIXELOPERATOR_16 = make_font("PixelOperator-16")
+# FONT_PIXELOPERATOR_32 = make_font("PixelOperator-32")
+# FONT_PIXELOPERATOR_BOLD_16 = make_font("PixelOperator-Bold-16")
+# FONT_PIXELOPERATOR_BOLD_32 = make_font("PixelOperator-Bold-32")
 
 # FONT_DOGICA_PIXEL_8 = make_font("Dogica_Pixel-8")
 # FONT_DOGICA_PIXEL_16 = make_font("Dogica_Pixel-16")
