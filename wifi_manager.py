@@ -5,7 +5,6 @@ import socketpool
 
 WIFI_SSID = os.getenv("WIFI_SSID")
 WIFI_PASSWORD = os.getenv("WIFI_PASSWORD")
-
 WIFI_RADIO = wifi.radio
 
 def connect(ssid, psswd) -> bool:
@@ -20,6 +19,12 @@ def stop_station():
 
 def start_station():
     WIFI_RADIO.start_station()
+
+def scan_nearby_networks() -> list:
+    networks = map(lambda x: x.ssid if len(x.ssid) > 0 else "No name", WIFI_RADIO.start_scanning_networks())
+    set_networks = set(networks)
+    WIFI_RADIO.stop_scanning_networks()
+    return set_networks
 
 def is_connected() -> bool:
     return not ip_address() is None
@@ -50,3 +55,4 @@ def mac_address():
 
 def ip_address():
     return f"{WIFI_RADIO.ipv4_address}"
+
