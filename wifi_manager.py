@@ -21,7 +21,7 @@ def start_station():
     WIFI_RADIO.start_station()
 
 def scan_nearby_networks() -> list:
-    networks = map(lambda x: x.ssid if len(x.ssid) > 0 else "No name", WIFI_RADIO.start_scanning_networks())
+    networks = map(lambda x: x.ssid if len(x.ssid.strip()) > 0 else "No name", WIFI_RADIO.start_scanning_networks())
     set_networks = set(networks)
     WIFI_RADIO.stop_scanning_networks()
     return set_networks
@@ -41,7 +41,7 @@ def signal_strength() -> int:
     # As of now, CircuitPython 8.0.2 on a raspberry pi pico will raise a 'NotImplementeError' when calling 'ap_info'
     return None
 
-def mac_address():
+def mac_address() -> str:
     if WIFI_RADIO.mac_address:
         mac = ""
         for index, value in enumerate(WIFI_RADIO.mac_address):
@@ -53,6 +53,6 @@ def mac_address():
     else:
         return None
 
-def ip_address():
+def ip_address() -> str:
     return f"{WIFI_RADIO.ipv4_address}"
 

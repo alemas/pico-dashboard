@@ -9,6 +9,8 @@ import gui
 import graphics
 import dht
 import wifi_manager as wifi
+import window_manager
+from text_window import TextWindow
 
 TFT_SCLK = board.GP2
 TFT_RST = board.GP5
@@ -23,17 +25,22 @@ SPI = busio.SPI(TFT_SCLK, TFT_MOSI)
 DISPLAY_BUS = displayio.FourWire(SPI, command=TFT_DC, chip_select=TFT_CS, reset=TFT_RST)
 TFT = adafruit_ili9341.ILI9341(DISPLAY_BUS, width=320, height=240)
 
-gui.init()
-gui.refresh(TFT)
+def setup():
+    gui.init()
+    wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+    window_manager.transition_to_window(TextWindow())
 
-wifi.stop_station()
-wifi.connect(wifi.WIFI_SSID, wifi.WIFI_PASSWORD)
+def main_loop():
 
-while True:
-    temperature = dht.get_temperature()
-    humidity = dht.get_humidity()
-    gui.update_wifi()
-    gui.update_temperature(temperature)
-    gui.update_humidity(humidity)
-    gui.refresh(TFT)
-    time.sleep(1)
+    while True:
+        gui.update_wifi()
+        gui.update_temperature()
+        gui.update_humidity()
+
+        window_manager.window_loop()
+        gui.draw(TFT)
+
+        time.sleep(1)
+
+setup()
+main_loop()
