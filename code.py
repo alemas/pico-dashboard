@@ -2,6 +2,7 @@ import board
 import busio
 import displayio
 import time
+import gc
 
 import adafruit_ili9341
 
@@ -37,7 +38,10 @@ def main_loop():
         gui.update_temperature()
         gui.update_humidity()
 
+        # print(f"Free memory before window loop: {gc.mem_free()}B")
         window_manager.window_loop()
+        # print(f"Free memory after window loop: {gc.mem_free()}B\n")
+        gc.collect()
         gui.draw(TFT)
 
         time.sleep(1)
