@@ -1,6 +1,7 @@
 import displayio as dio
 from adafruit_display_shapes.line import Line
 from adafruit_display_shapes.rect import Rect
+import gc
 
 import graphics
 import dht
@@ -122,6 +123,8 @@ def update_wifi():
         __update_wifi(4)
     else:
         __update_wifi(0)
+    gc.collect()
+    
 
 def update_temperature():
     temperature = dht.get_temperature()
