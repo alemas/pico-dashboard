@@ -1,13 +1,11 @@
-.PHONY: send_src receive_src
+.PHONY: all
 
 OUT_PATH = /Volumes/PICO
 
+all: send_src
+
 send_src:
 	cp -r *.py ${OUT_PATH}
-	cp settings.toml ${OUT_PATH}
-
-receive_src:
-	cp -r ${OUT_PATH}/*.py ./
 
 # send_fonts:
 # ifneq ("$(wildcard $(OUT_PATH)/fonts)", "")
