@@ -1,7 +1,6 @@
 import os
 import ipaddress
 import wifi
-import socketpool
 
 WIFI_SSID = os.getenv("WIFI_SSID")
 WIFI_PASSWORD = os.getenv("WIFI_PASSWORD")
