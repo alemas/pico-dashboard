@@ -2,6 +2,7 @@ from displayio import Palette
 from displayio import TileGrid
 from displayio import OnDiskBitmap
 from adafruit_display_text import label
+from adafruit_display_text import bitmap_label
 from adafruit_bitmap_font import bitmap_font
 
 # COLORS
@@ -50,12 +51,16 @@ FONT_LUCIDA_GRANDE_BOLD_16 = make_font("LucidaGrande-Bold-16")
 
 # LABEL
 
+def make_bitmap_label(x, y, font, text, color, bg=None):
+    lbl = bitmap_label.Label(font, text=text, color=color, background_color=bg)
+    lbl.anchor_point = (0,0)
+    lbl.anchored_position = (x, y)
+    return lbl
+
 def make_label(x, y, font, text, color, bg=None):
-    lbl = label.Label(font, text=text, color=color)
-    lbl.background_color = bg
+    lbl = label.Label(font, text=text, color=color, background_color=bg)
     lbl.anchor_point = (0, 0)
     lbl.anchored_position = (x, y)
-    # lbl.y = y
     return lbl
 
 
