@@ -23,17 +23,7 @@ class TextWindow(Window):
         self.group.append(self.text_label)
     
     def loop(self):
-        # networks = wifi.scan_nearby_networks()
-        # networks_text = ""
-        # for n in networks:
-        #     networks_text = networks_text + f"\n{n}"
-        # self.append_text(networks_text)
-
-        self.text = net.get_quotes()
-        print(len(self.text.encode('utf-8')))
-        self.__set_text()
-        del self.text
-        gc.collect()
+        pass
 
     def deinit(self):
         del self.group
