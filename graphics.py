@@ -2,6 +2,7 @@ from displayio import Palette
 from displayio import TileGrid
 from displayio import OnDiskBitmap
 from adafruit_display_text import label
+from adafruit_display_text import bitmap_label
 from adafruit_bitmap_font import bitmap_font
 
 # COLORS
@@ -38,9 +39,9 @@ def make_font(font_name) -> bitmap_font.BDF:
 # FONT_DOGICA_PIXEL_BOLD_8 = make_font("Dogica_Pixel_Bold-8")
 # FONT_DOGICA_PIXEL_BOLD_16 = make_font("Dogica_Pixel_Bold-16")
 
-FONT_LUCIDA_GRANDE_16 = make_font("LucidaGrande-16")
+# FONT_LUCIDA_GRANDE_16 = make_font("LucidaGrande-16")
 FONT_LUCIDA_GRANDE_12 = make_font("LucidaGrande-12")
-FONT_LUCIDA_GRANDE_BOLD_12 = make_font("LucidaGrande-Bold-12")
+# FONT_LUCIDA_GRANDE_BOLD_12 = make_font("LucidaGrande-Bold-12")
 FONT_LUCIDA_GRANDE_BOLD_16 = make_font("LucidaGrande-Bold-16")
 
 # FONT_CALIBRI_16 = make_font("Calibri-16")
@@ -50,11 +51,16 @@ FONT_LUCIDA_GRANDE_BOLD_16 = make_font("LucidaGrande-Bold-16")
 
 # LABEL
 
+def make_bitmap_label(x, y, font, text, color, bg=None):
+    lbl = bitmap_label.Label(font, text=text, color=color, background_color=bg)
+    lbl.anchor_point = (0,0)
+    lbl.anchored_position = (x, y)
+    return lbl
+
 def make_label(x, y, font, text, color, bg=None):
-    lbl = label.Label(font, text=text, color=color)
-    lbl.background_color = bg
-    lbl.x = x
-    lbl.y = y
+    lbl = label.Label(font, text=text, color=color, background_color=bg)
+    lbl.anchor_point = (0, 0)
+    lbl.anchored_position = (x, y)
     return lbl
 
 

@@ -66,7 +66,8 @@ def __init_temperature():
     set_group_item(temp_image_group, temp_image, 0)
 
     global TEMP_LABEL
-    TEMP_LABEL = graphics.make_label(x+20, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_12, "", graphics.COLOR_WHITE)
+    TEMP_LABEL = graphics.make_bitmap_label(x+20, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_12, "", graphics.COLOR_WHITE)
+    TEMP_LABEL.anchor_point = (0, 0.5)
     set_group_item(ROOT_GROUP, temp_image_group, 4)
     set_group_item(ROOT_GROUP, TEMP_LABEL, 5)
 
@@ -80,13 +81,15 @@ def __init_humidity():
     set_group_item(humidity_image_group, humidity_image, 0)
 
     global HUMIDITY_LABEL
-    HUMIDITY_LABEL = graphics.make_label(x+20, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_12, "", graphics.COLOR_WHITE)
+    HUMIDITY_LABEL = graphics.make_bitmap_label(x+20, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_12, "", graphics.COLOR_WHITE)
+    HUMIDITY_LABEL.anchor_point = (0, 0.5)
     set_group_item(ROOT_GROUP, humidity_image_group, 6)
     set_group_item(ROOT_GROUP, HUMIDITY_LABEL, 7)
 
 def __init_time():
     global TIME_LABEL
-    TIME_LABEL = graphics.make_label(STATUS_BAR_H_PADDING, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_BOLD_16, '09:41 Wed 13 Mar', graphics.COLOR_WHITE)
+    TIME_LABEL = graphics.make_bitmap_label(STATUS_BAR_H_PADDING, int(STATUS_BAR_HEIGHT/2), graphics.FONT_LUCIDA_GRANDE_BOLD_16, '09:41 Wed 13 Mar', graphics.COLOR_WHITE)
+    TIME_LABEL.anchor_point = (0, 0.5)
     set_group_item(ROOT_GROUP, TIME_LABEL, 8)
 
 def __update_wifi(status):
