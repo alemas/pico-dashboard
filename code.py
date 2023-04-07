@@ -38,13 +38,13 @@ def main_loop():
         gui.update_temperature()
         gui.update_humidity()
 
-        # print(f"Free memory before window loop: {gc.mem_free()}B")
+        print(f"Free memory before window loop: {gc.mem_free()}B")
         window_manager.window_loop()
-        # print(f"Free memory after window loop: {gc.mem_free()}B\n")
+        print(f"Free memory after window loop: {gc.mem_free()}B\n")
         gc.collect()
         gui.draw(TFT)
 
-        time.sleep(1)
+        time.sleep(600)
 
 setup()
 main_loop()

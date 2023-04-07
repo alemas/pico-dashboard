@@ -23,6 +23,7 @@ class TextWindow(Window):
         self.group.append(self.text_label)
     
     def loop(self):
+        print(net.get_forecast(), "\n")
         pass
 
     def deinit(self):
